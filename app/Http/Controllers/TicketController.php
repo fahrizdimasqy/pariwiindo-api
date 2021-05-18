@@ -13,8 +13,12 @@ class TicketController extends Controller
     //
     public function index()
     {
-    	$ticket = Ticket::paginate(6);
- 		return new TicketResourceCollection($ticket);
+   //  	$ticket = Ticket::paginate(6);
+ 		// return new TicketResourceCollection($ticket);
+        // $tickets = DB::select("select * from tickets");
+        $tickets = new TicketCollectionResource(Ticket::get());
+ return $tickets;
+    return $tickets;
     }
     public function view($id)
     {
