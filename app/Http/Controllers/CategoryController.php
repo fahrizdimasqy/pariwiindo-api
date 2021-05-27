@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// use App\Http\Resources\Ticket as TicketResource;
+use App\Http\Resources\TicketCollection as CategoryResourceCollection;
+use App\Http\Resources\Categories;
+use \App\Category;
+use DB;
 
 class CategoryController extends Controller
 {
@@ -11,6 +16,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function random($count)
+    {
+        $criteria = Category::select('*')->inRandomOrder()->limit($count)->get();
+        return new CategoryResourceCollection($criteria);
+    }
     public function index()
     {
         //
